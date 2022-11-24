@@ -45,7 +45,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("AppDbContext")));
+    options.UseSqlite(builder.Configuration.GetConnectionString("AppDbContext")));
 
 
 builder.Services.AddScoped<ITokenService, TokenService>();
