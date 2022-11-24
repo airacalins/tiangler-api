@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Tiangler.Application\Tiangler.Application.csproj" />
     <ProjectReference Include="..\Tiangler.Core\Tiangler.Core.csproj" />
   </ItemGroup>
 

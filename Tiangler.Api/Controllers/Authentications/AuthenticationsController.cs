@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Tiangler.Api.Controllers.Dtos;
-using Tiangler.Api.Services;
+using Tiangler.Api.Services.TokenServices;
 using Tiangler.Core.Domains.ApplicationUsers;
 
 namespace Tiangler.Api.Controllers.Authentications

@@ -5,7 +5,7 @@ using System.Security.Claims;
 using System.Text;
 using Tiangler.Core.Domains.ApplicationUsers;
 
-namespace Tiangler.Api.Services
+namespace Tiangler.Api.Services.TokenServices
 {
     public class TokenService : ITokenService
     {

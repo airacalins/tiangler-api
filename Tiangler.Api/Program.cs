@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
-using Tiangler.Api.Services;
+using Tiangler.Api.Services.TokenServices;
 using Tiangler.Core.Contexts;
 using Tiangler.Core.Domains.ApplicationUsers;
 
