@@ -1,4 +1,6 @@
-﻿namespace Tiangler.Core.ResultModels
+﻿using Tiangler.Core.ResultModels.Interfaces;
+
+namespace Tiangler.Core.ResultModels
 {
     public class CommandResult<T> : ICommandResult<T>
     {

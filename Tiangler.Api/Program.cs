@@ -7,6 +7,7 @@ using System.Text;
 using Tiangler.Api.Services.TokenServices;
 using Tiangler.Application.Commands;
 using Tiangler.Core.Contexts;
+using Tiangler.Core.Domains;
 using Tiangler.Core.Domains.ApplicationUsers;
 using Tiangler.Core.Repositories;
 
@@ -54,6 +55,7 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 
 builder.Services.AddRepositories();
 builder.Services.AddCommands();
+builder.Services.AddFactories();
 
 
 builder.Services.AddSwaggerGen(opt =>
