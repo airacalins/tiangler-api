@@ -10,12 +10,12 @@ namespace Tiangler.Api.Controllers.Authentications
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthenticationsController : ControllerBase
+    public class AccountsController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ITokenService _tokenService;
 
-        public AuthenticationsController(UserManager<ApplicationUser> userManager, ITokenService tokenService)
+        public AccountsController(UserManager<ApplicationUser> userManager, ITokenService tokenService)
         {
             _userManager = userManager;
             _tokenService = tokenService;
@@ -60,7 +60,6 @@ namespace Tiangler.Api.Controllers.Authentications
         }
 
         [Authorize]
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet("currentUser")]
         public async Task<ActionResult<UserDto>> GetCurrentUser()
         {
