@@ -22,8 +22,8 @@ namespace Tiangler.Api.Services.TokenServices
         {
             var claims = new List<Claim>
             {
-                // new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Name, user.UserName)
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim("UserId", user.Id.ToString()),
             };
 
             var roles = await _userManager.GetRolesAsync(user);
