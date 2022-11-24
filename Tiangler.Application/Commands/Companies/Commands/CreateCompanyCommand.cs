@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tiangler.Application.Commands.Companies.Dtos;
+﻿using Tiangler.Application.Commands.Companies.Dtos;
 using Tiangler.Application.Commands.Companies.Interfaces;
 using Tiangler.Core.Domains.Companies;
 using Tiangler.Core.ResultModels;
@@ -16,27 +11,28 @@ namespace Tiangler.Application.Commands.Companies.Commands
     {
         private readonly ICompanyRepository _companyRepository;
         private readonly IApplicationUserRepository _applicationUserRepository;
+        private readonly ICompanyFactory _companyFactory;
 
-        public CreateCompanyCommand(ICompanyRepository companyRepository, IApplicationUserRepository applicationUserRepository)
+        public CreateCompanyCommand(ICompanyRepository companyRepository, IApplicationUserRepository applicationUserRepository, ICompanyFactory companyFactory)
         {
             _companyRepository = companyRepository;
             _applicationUserRepository = applicationUserRepository;
+            _companyFactory = companyFactory;
         }
         public async Task<CommandResult<bool>> ExecuteAsync(CreateCompanyDto input, Guid userId)
         {
             var user = await _applicationUserRepository.FirstOrDefaultAsync(a => a.Id == userId);
 
             if (user == null)
-                return new CommandResult<bool>("Create_Company_Failed", "User not found. ");
+                return new CommandResult<bool>("Create_Company_Failed", "User not found.");
 
 
-            var company = new Company
-            {
-                CompanyName = input.CompanyName,
-                CompanyAdmin = userId
-            };
+            var companyResult = _companyFactory.CreateCompany(input.CompanyName, userId);
 
-            _companyRepository.Add(company);
+            if(!companyResult.IsSuccess)
+                return new CommandResult<bool>("Create_Company_Failed", "Company name is required.");
+
+            _companyRepository.Add(companyResult.Result);
             await _companyRepository.SaveChangesAsync();
 
             return new CommandResult<bool>(true);
