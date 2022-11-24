@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Tiangler.Core.Domains.Companies;
 
 namespace Tiangler.Core.Domains.ApplicationUsers
 {
