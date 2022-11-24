@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Tiangler.Core.Migrations
+namespace Tiangler.Infrastructure.Migrations
 {
     public partial class InitialMigrations : Migration
     {
