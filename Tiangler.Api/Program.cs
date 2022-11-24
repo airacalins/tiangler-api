@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using Tiangler.Api.Services.TokenServices;
+using Tiangler.Application.Contexts;
 using Tiangler.Core.Domains.ApplicationUsers;
 using Tiangler.Infrastructure.Contexts;
 
@@ -80,6 +81,8 @@ builder.Services.AddSwaggerGen(opt =>
         }
     });
 });
+
+builder.Services.AddScoped<IAppDbContext, AppDbContext>();
 
 var app = builder.Build();
 
