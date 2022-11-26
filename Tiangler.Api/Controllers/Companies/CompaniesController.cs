@@ -13,11 +13,16 @@ namespace Tiangler.Api.Controllers.Companies
     {
         private readonly ICreateCompanyCommand _createCompanyCommand;
         private readonly IGetUserCompaniesCommand _getUserCompaniesCommand;
+        private readonly IGetUserCompanyCommand _getUserCompanyCommand;
 
-        public CompaniesController(ICreateCompanyCommand createCompanyCommand, IGetUserCompaniesCommand getUserCompaniesCommand)
+        public CompaniesController(ICreateCompanyCommand createCompanyCommand,
+            IGetUserCompaniesCommand getUserCompaniesCommand,
+            IGetUserCompanyCommand getUserCompanyCommand
+            )
         {
             _createCompanyCommand = createCompanyCommand;
             _getUserCompaniesCommand = getUserCompaniesCommand;
+            _getUserCompanyCommand = getUserCompanyCommand;
         }
 
         [HttpGet]
@@ -30,6 +35,20 @@ namespace Tiangler.Api.Controllers.Companies
                 return Error(commandResult);
 
             var result = commandResult.Result.Select(i => new CompanyViewModel(i)).ToList();
+            return result;
+        }
+
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CompanyViewModel>> GetCompany(Guid id)
+        {
+            var userId = GetUserId();
+            var commandResult = await _getUserCompanyCommand.ExecuteAsync(id, userId);
+
+            if (!commandResult.IsSuccessful)
+                return Error(commandResult);
+
+            var result =  new CompanyViewModel(commandResult.Result);
             return result;
         }
 

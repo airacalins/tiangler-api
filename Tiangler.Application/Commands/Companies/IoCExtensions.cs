@@ -9,7 +9,8 @@ namespace Tiangler.Application.Commands.Companies
         public static void AddCompanyCommands(this IServiceCollection services)
         {
             services.AddScoped<ICreateCompanyCommand, CreateCompanyCommand>();
-            services.AddScoped<IGetUserCompaniesCommand, GetUserCompaniesCommand>(); 
+            services.AddScoped<IGetUserCompaniesCommand, GetUserCompaniesCommand>();
+            services.AddScoped<IGetUserCompanyCommand, GetUserCompanyCommand>(); 
         }
     }
 }
